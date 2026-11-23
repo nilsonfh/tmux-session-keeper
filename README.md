@@ -35,6 +35,14 @@ extension puts that in one panel.
 - To start at boot without logging in, enable lingering once: `sudo loginctl enable-linger $USER`.
   The extension tells you when this is missing; it never runs `sudo` for you.
 
+## Install
+Download the latest `.vsix` from [Releases](https://github.com/nilsonfh/tmux-session-keeper/releases) and install it. Run this in the terminal of the machine that runs your sessions (with Remote-SSH, that is the remote terminal):
+
+    curl -fsSL -o /tmp/tmux-session-keeper.vsix https://github.com/nilsonfh/tmux-session-keeper/releases/latest/download/tmux-session-keeper.vsix \
+      && code --install-extension /tmp/tmux-session-keeper.vsix
+
+`code --install-extension` only accepts a local file or a Marketplace id, not a URL, so it is two steps. Each release lists the file's SHA-256 in its notes. To pin a version, use `.../releases/download/vX.Y.Z/tmux-session-keeper-X.Y.Z.vsix`. Then reload the VS Code window.
+
 ## Getting started
 1. Open the **Session Keeper** panel in the activity bar.
 2. Click **+**, pick a conversation (or a new one), name the window.
@@ -80,6 +88,7 @@ extension puts that in one panel.
     npm install
     npm test          # compile and run the tests of the pure logic
     npm run package   # build the .vsix
+    scripts/release.sh  # publish a GitHub release with both the versioned and the fixed-name .vsix
     code --install-extension tmux-session-keeper-0.4.2.vsix
 
 License: MIT.

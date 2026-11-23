@@ -31,6 +31,14 @@ lo reúne en un panel.
 - VS Code conectado a la máquina donde corren las sesiones (local o Remote-SSH).
 - Para arrancar sin iniciar sesión, activa el linger una vez: `sudo loginctl enable-linger $USER`. La extensión avisa si falta y nunca ejecuta `sudo` por ti.
 
+## Instalación
+Descarga el último `.vsix` desde [Releases](https://github.com/nilsonfh/tmux-session-keeper/releases) e instálalo. Ejecuta esto en el terminal de la máquina donde corren tus sesiones (con Remote-SSH, el terminal remoto):
+
+    curl -fsSL -o /tmp/tmux-session-keeper.vsix https://github.com/nilsonfh/tmux-session-keeper/releases/latest/download/tmux-session-keeper.vsix \
+      && code --install-extension /tmp/tmux-session-keeper.vsix
+
+`code --install-extension` solo acepta un archivo local o un id del Marketplace, no una URL, así que son dos pasos. Cada release publica el SHA-256 del archivo en sus notas. Para fijar una versión usa `.../releases/download/vX.Y.Z/tmux-session-keeper-X.Y.Z.vsix`. Después recarga la ventana de VS Code.
+
 ## Primeros pasos
 1. Abre el panel **Session Keeper** en la barra de actividad.
 2. Pulsa **+**, elige una conversación (o una nueva) y nombra la ventana.
