@@ -1,0 +1,354 @@
+{
+  "name": "tmux-session-keeper",
+  "displayName": "tmux Session Keeper",
+  "description": "%description%",
+  "version": "0.6.0",
+  "publisher": "nilsonfh",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "extensionKind": [
+    "workspace"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/src/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "tmuxKeeper",
+          "title": "%container%",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "tmuxKeeper": [
+        {
+          "id": "tmuxKeeper.sessions",
+          "name": "%view%"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "tmuxKeeper.refresh",
+        "title": "%cmd.refresh%",
+        "category": "Session Keeper",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "tmuxKeeper.open",
+        "title": "%cmd.open%",
+        "category": "Session Keeper",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "tmuxKeeper.new",
+        "title": "%cmd.new%",
+        "category": "Session Keeper",
+        "icon": "$(add)"
+      },
+      {
+        "command": "tmuxKeeper.reconnect",
+        "title": "%cmd.reconnect%",
+        "category": "Session Keeper",
+        "icon": "$(plug)"
+      },
+      {
+        "command": "tmuxKeeper.importRunning",
+        "title": "%cmd.importRunning%",
+        "category": "Session Keeper",
+        "icon": "$(cloud-download)"
+      },
+      {
+        "command": "tmuxKeeper.togglePersist",
+        "title": "%cmd.togglePersist%",
+        "category": "Session Keeper",
+        "icon": "$(pin)"
+      },
+      {
+        "command": "tmuxKeeper.closeWindow",
+        "title": "%cmd.closeWindow%",
+        "category": "Session Keeper",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "tmuxKeeper.serviceStart",
+        "title": "%cmd.serviceStart%",
+        "category": "Session Keeper",
+        "icon": "$(play)"
+      },
+      {
+        "command": "tmuxKeeper.serviceRestart",
+        "title": "%cmd.serviceRestart%",
+        "category": "Session Keeper",
+        "icon": "$(debug-restart)"
+      },
+      {
+        "command": "tmuxKeeper.serviceStop",
+        "title": "%cmd.serviceStop%",
+        "category": "Session Keeper",
+        "icon": "$(debug-stop)"
+      },
+      {
+        "command": "tmuxKeeper.installBoot",
+        "category": "Session Keeper",
+        "icon": "$(cloud-upload)",
+        "title": "%cmd.installBoot%"
+      },
+      {
+        "command": "tmuxKeeper.uninstallBoot",
+        "category": "Session Keeper",
+        "icon": "$(circle-slash)",
+        "title": "%cmd.uninstallBoot%"
+      },
+      {
+        "command": "tmuxKeeper.serverSetup",
+        "title": "%cmd.serverSetup%",
+        "category": "Session Keeper",
+        "icon": "$(server-environment)"
+      },
+      {
+        "command": "tmuxKeeper.serverLog",
+        "title": "%cmd.serverLog%",
+        "category": "Session Keeper",
+        "icon": "$(output)"
+      },
+      {
+        "command": "tmuxKeeper.serverRemove",
+        "title": "%cmd.serverRemove%",
+        "category": "Session Keeper",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "tmuxKeeper.startSaved",
+        "title": "%cmd.startSaved%",
+        "category": "Session Keeper",
+        "icon": "$(play)"
+      },
+      {
+        "command": "tmuxKeeper.removeSaved",
+        "title": "%cmd.removeSaved%",
+        "category": "Session Keeper",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "tmuxKeeper.checkUnits",
+        "title": "%cmd.checkUnits%",
+        "category": "Session Keeper",
+        "icon": "$(shield)"
+      },
+      {
+        "command": "tmuxKeeper.moveToGroup",
+        "title": "%cmd.moveToGroup%",
+        "category": "Session Keeper",
+        "icon": "$(arrow-swap)"
+      },
+      {
+        "command": "tmuxKeeper.renameGroup",
+        "title": "%cmd.renameGroup%",
+        "category": "Session Keeper",
+        "icon": "$(edit)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "tmuxKeeper.new",
+          "when": "view == tmuxKeeper.sessions",
+          "group": "navigation@1"
+        },
+        {
+          "command": "tmuxKeeper.importRunning",
+          "when": "view == tmuxKeeper.sessions",
+          "group": "navigation@2"
+        },
+        {
+          "command": "tmuxKeeper.refresh",
+          "when": "view == tmuxKeeper.sessions",
+          "group": "navigation@3"
+        },
+        {
+          "command": "tmuxKeeper.installBoot",
+          "when": "view == tmuxKeeper.sessions",
+          "group": "1_boot@1"
+        },
+        {
+          "command": "tmuxKeeper.uninstallBoot",
+          "when": "view == tmuxKeeper.sessions",
+          "group": "1_boot@2"
+        },
+        {
+          "command": "tmuxKeeper.serverSetup",
+          "when": "view == tmuxKeeper.sessions",
+          "group": "1_boot@3"
+        },
+        {
+          "command": "tmuxKeeper.checkUnits",
+          "when": "view == tmuxKeeper.sessions",
+          "group": "1_boot@4"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "tmuxKeeper.open",
+          "when": "view == tmuxKeeper.sessions && viewItem == window",
+          "group": "inline@1"
+        },
+        {
+          "command": "tmuxKeeper.reconnect",
+          "when": "view == tmuxKeeper.sessions && viewItem == window",
+          "group": "inline@2"
+        },
+        {
+          "command": "tmuxKeeper.togglePersist",
+          "when": "view == tmuxKeeper.sessions && viewItem == window",
+          "group": "9_persist"
+        },
+        {
+          "command": "tmuxKeeper.closeWindow",
+          "when": "view == tmuxKeeper.sessions && viewItem == window",
+          "group": "9_danger"
+        },
+        {
+          "command": "tmuxKeeper.serviceRestart",
+          "when": "view == tmuxKeeper.sessions && (viewItem == service || viewItem == server)",
+          "group": "inline@1"
+        },
+        {
+          "command": "tmuxKeeper.serviceStart",
+          "when": "view == tmuxKeeper.sessions && (viewItem == service || viewItem == server)",
+          "group": "1_service@1"
+        },
+        {
+          "command": "tmuxKeeper.serviceStop",
+          "when": "view == tmuxKeeper.sessions && (viewItem == service || viewItem == server)",
+          "group": "1_service@3"
+        },
+        {
+          "command": "tmuxKeeper.serverLog",
+          "when": "view == tmuxKeeper.sessions && viewItem == server",
+          "group": "inline@2"
+        },
+        {
+          "command": "tmuxKeeper.serverRemove",
+          "when": "view == tmuxKeeper.sessions && viewItem == server",
+          "group": "9_danger"
+        },
+        {
+          "command": "tmuxKeeper.startSaved",
+          "when": "view == tmuxKeeper.sessions && viewItem == saved",
+          "group": "inline@1"
+        },
+        {
+          "command": "tmuxKeeper.removeSaved",
+          "when": "view == tmuxKeeper.sessions && viewItem == saved",
+          "group": "9_danger"
+        },
+        {
+          "command": "tmuxKeeper.moveToGroup",
+          "when": "view == tmuxKeeper.sessions && viewItem == window",
+          "group": "8_group"
+        },
+        {
+          "command": "tmuxKeeper.renameGroup",
+          "when": "view == tmuxKeeper.sessions && viewItem == session",
+          "group": "8_group"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "tmux Session Keeper",
+      "properties": {
+        "tmuxKeeper.tmuxSession": {
+          "type": "string",
+          "default": "claude",
+          "description": "%cfg.tmuxSession%"
+        },
+        "tmuxKeeper.projectDir": {
+          "type": "string",
+          "default": "",
+          "description": "%cfg.projectDir%"
+        },
+        "tmuxKeeper.claudeBin": {
+          "type": "string",
+          "default": "",
+          "description": "%cfg.claudeBin%"
+        },
+        "tmuxKeeper.sessionsFile": {
+          "type": "string",
+          "default": "",
+          "description": "%cfg.sessionsFile%"
+        },
+        "tmuxKeeper.services": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "claude-tmux-restore"
+          ],
+          "description": "%cfg.services%"
+        },
+        "tmuxKeeper.refreshSeconds": {
+          "type": "number",
+          "default": 10,
+          "minimum": 3,
+          "description": "%cfg.refreshSeconds%"
+        },
+        "tmuxKeeper.serverAutoUpdate": {
+          "type": "boolean",
+          "default": false,
+          "description": "%cfg.serverAutoUpdate%"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p .",
+    "test": "tsc -p . && node --test out/test/",
+    "package": "npm test && vsce package --no-dependencies"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/vscode": "^1.90.0",
+    "@vscode/vsce": "^3.0.0",
+    "typescript": "^5.5.0"
+  },
+  "icon": "media/icon.png",
+  "keywords": [
+    "claude",
+    "claude code",
+    "tmux",
+    "remote control",
+    "terminal",
+    "sessions"
+  ],
+  "galleryBanner": {
+    "color": "#0b1020",
+    "theme": "dark"
+  },
+  "l10n": "./l10n",
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": false,
+      "description": "Runs tmux and systemctl commands."
+    },
+    "virtualWorkspaces": false
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nilsonfh/tmux-session-keeper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nilsonfh/tmux-session-keeper/issues"
+  },
+  "homepage": "https://github.com/nilsonfh/tmux-session-keeper#readme"
+}
